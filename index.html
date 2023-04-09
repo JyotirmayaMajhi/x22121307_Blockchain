@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Betting Dapp</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script type="module">
+      // Connect to an Ethereum node
+      // const web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/your-infura-project-id"));
+      
+      // Load the deployed smart contract
+      const abi = [
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "outcome",
+              "type": "uint256"
+            }
+          ],
+          "name": "NewBet",
+          "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "betAmount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "bets",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            }
+          ],
+          "name": "getBetOutcome",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "getTotalBets",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "owner",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "outcome",
+              "type": "uint256"
+            }
+          ],
+          "name": "placeBet",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "setBetAmount",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "totalBets",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "withdraw",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+      ];
+      const contractAddress = "0xef8eed5e1024cd3d121e5d99f808376ddecd57a1";
+      // const myContract = new web3.eth.Contract(abi, contractAddress);
+      
+      // // Interact with the smart contract functions
+      // myContract.methods.getGreeting().call().then(function(greeting) {
+      //   console.log(greeting);
+      // });
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>Betting Dapp</h1>
+      <p>Place your bets and win big!</p>
+    </header>
+    <main>
+      <form>
+        <h2>Place a Bet</h2>
+        <label for="amount">Bet Amount:</label>
+        <input type="number" id="amount" name="amount" required />
+        <label for="outcome">Outcome:</label>
+        <select id="outcome" name="outcome" required>
+          <option value="">Select an IPL Team</option>
+          <option value="1">MI</option>
+          <option value="2">KKR</option>
+          <option value="3">RR</option>
+          <option value="4">CSK</option>
+          <option value="5">LSG</option>
+          <option value="6">GT</option>
+          <option value="7">DC</option>
+        </select>
+        <button type="submit">Place Bet</button>
+      </form>
+      <div>
+        <h2>Actions</h2>
+        <button id="withdraw-btn">Withdraw</button>
+        <button id="set-amount-btn">Set Bet Amount</button>
+        <button id="get-outcome-btn">Get Bet Outcome</button>
+        <button id="get-total-bets-btn">Get Total Bets</button>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; 2023 Betting Dapp</p>
+    </footer>
+    <script src="index.js"></script>
+    <script src="BettingDapp.json"></script>
+  </body>
+</html>
